@@ -21,7 +21,8 @@ app.use(
   cors({
     origin(origin, cb) {
       if (!origin || config.corsOrigins.includes(origin)) return cb(null, true);
-      return cb(new Error(`CORS bloqueado para origen: ${origin}`));
+      console.warn(`CORS bloqueado para origen: ${origin}`);
+      return cb(null, false);
     },
   })
 );

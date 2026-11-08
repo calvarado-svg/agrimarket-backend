@@ -9,11 +9,12 @@ function required(name) {
 }
 
 export const config = {
-  port: Number(process.env.AGRIMARKET_PORT || 4000),
+  // Render inyecta PORT; en local se usa AGRIMARKET_PORT
+  port: Number(process.env.PORT || process.env.AGRIMARKET_PORT || 4000),
   jwtSecret: required("AGRIMARKET_JWT_SECRET"),
   corsOrigins: required("AGRIMARKET_CORS_ORIGIN")
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean),
-  dataFile: required("AGRIMARKET_DATA_FILE"),
+  dataFile: process.env.AGRIMARKET_DATA_FILE || "./data/store.json",
 };
